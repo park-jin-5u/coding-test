@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        String BNumber = scanner.next();
+        int B = scanner.nextInt();
+
+        int decimalNumber = convertToDecimal(BNumber, B);
+        System.out.println(decimalNumber);
+
+    }
+
+    public static int convertToDecimal(String BNumber, int B) {
+        int decimalNumber = 0;
+        int power = 0;
+        for (int i = BNumber.length() - 1; i >= 0; i--) {
+            char digit = BNumber.charAt(i);
+            int value;
+            if (Character.isDigit(digit)) {
+                value = digit - '0';
+            } else {
+                value = digit - 'A' + 10;
+            }
+            decimalNumber += value * Math.pow(B, power);
+            power++;
+        }
+        return decimalNumber;
+    }
+}
