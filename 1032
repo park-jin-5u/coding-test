@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N =  Integer.parseInt(scanner.nextLine());
+        ArrayList<char[]> C = new ArrayList<>();
+        ArrayList<Character> S = new ArrayList<>();
+
+        for(int i = 0; i<N; i++) {
+            String str = scanner.nextLine();
+            C.add(str.toCharArray());
+        }
+
+        for(int i=0; i<C.get(0).length; i++){
+            S.add(C.get(0)[i]);
+            for(int j =1; j<N; j++){
+                if(C.get(0)[i] != C.get(j)[i]){
+                    S.set( i ,'?');
+                }
+            }
+        }
+        for (int i = 0; i<S.size(); i++) {
+            System.out.print(S.get(i));
+        }
+    }
+}
