@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N =  scanner.nextInt();
+        int[] arr = new int[N];
+        
+        for (int i = 0; i < N; i++) {
+            int x1 = scanner.nextInt();
+            int y1 = scanner.nextInt();
+            int r1 = scanner.nextInt();
+            int x2 = scanner.nextInt();
+            int y2 = scanner.nextInt();
+            int r2 = scanner.nextInt();
+            int result = 0;
+
+            double d = (double) Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+
+            // 두 좌표가 다를 때
+            if (d != 0) {
+                if (d > r1 + r2) {
+                    result = 0;  // 두 원이 서로 외부에 있을 때
+                } else if (d == r1 + r2) {
+                    result = 1;  // 두 원이 외접할 때
+                } else if (d < r1 + r2 && d > Math.abs(r1 - r2)) {
+                    result = 2;  // 두 원이 두 점에서 교차할 때
+                } else if (d == Math.abs(r1 - r2)) {
+                    result = 1;  // 한 원이 다른 원 내부에서 내접할 때
+                } else if (d < Math.abs(r1 - r2)) {
+                    result = 0;  // 한 원이 다른 원 내부에 있을 때
+                }
+            } else {  // 두 좌표가 같을 때
+                if (r1 == r2) {
+                    result = -1;  // 두 원이 완전히 일치할 때 (무한 교점)
+                } else {
+                    result = 0;   // 두 원이 중심은 같지만 반지름이 다를 때
+                }
+            }
+            arr[i] = result;
+        }
+        
+        for(int i : arr) {
+            System.out.println(i);
+        }
+        
+        scanner.close();
+    }
+}
